@@ -1,4 +1,4 @@
-## Listado de Servicio o 1 servicio
+## Listado de Servicios o 1 servicio
 
 ```json
 {
