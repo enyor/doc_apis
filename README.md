@@ -282,14 +282,18 @@
     ],
     "recharges": [
         {
-             "id": 6,
+            "id": 6,
             "value": "950.0000",
             "included_quantity": "3.0000",
 			"quantity" : 5,
-            "measure_unit_id": 1,
             "base_price_id": 18,
             "user": null,
-            "recharge_value": 5500.0
+            "recharge_value": 1900.0,
+            "measure_units": {
+                "id": 6,
+                "name": "Cancelacion",
+                "description": " "
+            }
         }
     ],
     "worker": {
