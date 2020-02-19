@@ -117,7 +117,7 @@
                 "assignments": 2,
                 "capacity": 10,
                 "license_expiration": null,
-                "users": {
+                "user": {
                     "id": 115,
                     "first_name": "Cristian",
                     "last_name": "Cruz Express",
@@ -438,6 +438,76 @@
                     }
                 ]
             }
+```
+
+## Calculate
+
+```json
+//EXPRESS
+{
+    "price": 6500,
+    "basePrice": "6500.00",
+    "kms_amount": 3,
+    "approx_duration": 373,
+    "recharges": [
+        {
+            "id": 6,
+            "value": "950.0000",
+            "included_quantity": "3.0000",
+			"quantity" : 5,
+            "measure_unit_id": 1,
+            "base_price_id": 18
+        },
+        {
+            "id": 12,
+            "value": "2700.0000",
+            "included_quantity": "2.0000",
+			"quantity" : 5,
+            "measure_unit_id": 4,
+            "base_price_id": 18
+        },
+        {
+            "id": 36,
+            "value": "0.0200",
+            "included_quantity": "500000.0000",
+			"quantity" : 5,
+            "measure_unit_id": 5,
+            "base_price_id": 18
+        },
+        {
+            "id": 54,
+            "value": "5000.0000",
+            "included_quantity": "60.0000",
+			"quantity" : 5,
+            "measure_unit_id": 6,
+            "base_price_id": 18
+        },
+        {
+            "id": 72,
+            "value": "9000.0000",
+            "included_quantity": "0.0000",
+			"quantity" : 5,
+            "measure_unit_id": 7,
+            "base_price_id": 18
+        }
+    ],
+    "services": {
+        "total_price": 6500,
+        "dates": [
+            {
+                "date_time": "2020/05/07 23:59",
+                "discount_id": null,
+				"discount_value": 0,
+                "coupon_id": null,
+                "code": null,
+                "percentage": null,
+                "coupon_value": null,
+                "total": 6500
+            }
+        ]
+    }
+}
+
 ```
 
 ## Lista Estados de servicio
