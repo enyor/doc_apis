@@ -456,7 +456,9 @@
             "included_quantity": "3.0000",
 			"quantity" : 5,
             "measure_unit_id": 1,
-            "base_price_id": 18
+            "base_price_id": 18,
+            "user": null,
+            "recharge_value": 5500.0
         },
         {
             "id": 12,
@@ -464,7 +466,9 @@
             "included_quantity": "2.0000",
 			"quantity" : 5,
             "measure_unit_id": 4,
-            "base_price_id": 18
+            "base_price_id": 18,
+            "user": null,
+            "recharge_value": 5500.0
         },
         {
             "id": 36,
@@ -472,7 +476,9 @@
             "included_quantity": "500000.0000",
 			"quantity" : 5,
             "measure_unit_id": 5,
-            "base_price_id": 18
+            "base_price_id": 18,
+            "user": null,
+            "recharge_value": 5500.0
         },
         {
             "id": 54,
@@ -480,7 +486,9 @@
             "included_quantity": "60.0000",
 			"quantity" : 5,
             "measure_unit_id": 6,
-            "base_price_id": 18
+            "base_price_id": 18,
+            "user": null,
+            "recharge_value": 5500.0
         },
         {
             "id": 72,
@@ -488,7 +496,9 @@
             "included_quantity": "0.0000",
 			"quantity" : 5,
             "measure_unit_id": 7,
-            "base_price_id": 18
+            "base_price_id": 18,
+            "user": null,
+            "recharge_value": 5500.0
         }
     ],
     "services": {
@@ -510,6 +520,7 @@
 
 ```
 
+
 ## Lista Estados de servicio
 
 | Estado                | Id  |
@@ -520,3 +531,13 @@
 |Finalizado             |  4  |
 |Cancelado              |  5  |
 
+### Endpoint consulta
+```json
+[
+  {"id":1,"name":"En Espera","description":"En Espera"},
+  {"id":2,"name":"Asignado","description":"Asignado"},      
+  {"id":3,"name":"En Transito","description":"En Transito"},
+  {"id":4,"name":"Finalizado","description":"Finalizado"}, 
+  {"id":5,"name":"Cancelado","description":"Cancelado"}
+]
+```
