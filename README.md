@@ -1,5 +1,5 @@
 ## Listado de Servicios o 1 servicio
-
+Response:
 ```json
 {
     "current_page": 1,
@@ -211,6 +211,7 @@
 }
 ```
 ## Detalle de Servicio
+Response:
 
 ```json
 {
@@ -347,7 +348,7 @@
 ```
 
 ## Listado Worker
-
+Response:
 ```json
 {
                 "id": 88,
@@ -443,9 +444,8 @@
 ```
 
 ## Calculate
-
+Response: 
 ```json
-//EXPRESS
 {
     "price": 6500,
     "basePrice": "6500.00",
@@ -522,7 +522,6 @@
 
 ```
 
-
 ## Lista Estados de servicio
 
 | Estado                | Id  |
@@ -533,7 +532,8 @@
 |Finalizado             |  4  |
 |Cancelado              |  5  |
 
-### Endpoint consulta
+### Endpoint consulta tipos estado de servicio
+Response:
 ```json
 [
   {"id":1,"name":"En Espera","description":"En Espera"},
@@ -544,127 +544,73 @@
 ]
 ```
 
+## Crear Estado de servicio
+Request:
+```json
+{
+    "state": "1",
+    "worker" : 88, 
+    "mishap_type": 10,
+    "description": ""
+}
+```
+
+
 ## Rutas de endpoints
 
+Todas las rutas deben cumplir con los siguientes parámetros:
 
-  
+1.- Usar sustantivos en vez de verbos y utilizar en el mismo las acciones provistas por los métodos:
 
-    //>service types
-    $router->get('/servicetypes', 'Express\ServiceTypeController@show');
-    $router->post('/servicetypes', 'Express\ServiceTypeController@create');
-    $router->put('/servicetypes/{id}', 'Express\ServiceTypeController@update');
-    $router->patch('/servicetypes/{id}', 'Express\ServiceTypeController@edit');
-    $router->delete('/servicetypes/{id}', 'Express\ServiceTypeController@delete');
+Correcto:
+```
+    POST /services/calculate
+    GET /services/{id}
+    PATCH /services/{id}
+    DELETE services/{id}
+ ```
+Incorrecto:
+ ```
+    POST /services/delete/{id}
+    GET /addservices
+ ```
+    
+2.- Los nombres de las collecciones siempre deben ir en plural:
+Correcto:
+ ```
+    POST /services/calculate
+    GET /services/{id}
+    PATCH /services/{id}
+    DELETE services/{id}
+ ```
+Incorrecto:
+ ```
+    POST /service
+    GET /service
+ ```
 
-    //>payment types
-    $router->get('/paymenttypes', 'Express\PaymentTypeController@show');
-    $router->post('/paymenttypes', 'Express\PaymentTypeController@create');
-    $router->put('/paymenttypes/{id}', 'Express\PaymentTypeController@update');
-    $router->patch('/paymenttypes/{id}', 'Express\PaymentTypeController@edit');
-    $router->delete('/paymenttypes/{id}', 'Express\PaymentTypeController@delete');
+3.- Usar anidación de forma jerarquica:
+Ejemplo:
+ ```
+    GET /services/ <- Recupera servicios
+    GET /services/{idService} <- Recupera un servicio específico
+    GET /services/{idService}/stops <- Recupera las paradas de un servicio específico
+    GET /services/{idService}/stops/{idStop} <- Recupera una parada de un servicio específico
+    GET /services/{idService}/stops/{idStop}/evidence <- Recupera las evidencias de una parada especifica en un servicio específico
+ ```
 
-    //>service modalities
-    $router->get('/servicemodalities', 'Express\ServiceModalityController@show');
-    $router->post('/servicemodalities', 'Express\ServiceModalityController@create');
-    $router->put('/servicemodalities/{id}', 'Express\ServiceModalityController@update');
-    $router->patch('/servicemodalities/{id}', 'Express\ServiceModalityController@edit');
-    $router->delete('/servicemodalities/{id}', 'Express\ServiceModalityController@delete');
+4.- Definir rutas a partir de controladores usados:
+Ejemplo:
 
-    //Services
-    $router->get('/services/{id}/details', 'Express\ServiceController@details');
-    $router->post('/services', 'Express\ServiceController@create');
-    $router->post('/services/calculate', 'Express\ServiceController@calculate');
-    $router->get('/services/{id}', 'Express\ServiceController@showOne');
-    $router->get('/services', 'Express\ServiceController@show');
-    // $router->put('/services/{id}', 'Express\ServiceController@update');
-    $router->patch('/services/{id}', 'Express\ServiceController@edit');
-    $router->delete('/services/{id}', 'Express\ServiceController@delete');
-    $router->get('/services/{id}/stops', 'Express\ServiceController@serviceStop');
-    $router->get('/services/{id}/dates', 'Express\ServiceController@serviceDate');
+    Incorrecto:
+    Controlador ReportController
+```
+    GET /services/reports/express
+```
 
-    // $router->post('/services/{id}/invoice', 'Express\ServiceController@invoice');
-
-    $router->patch('/services/{id}/stops', 'Express\ServiceController@serviceOrderStopUpdate');
-    $router->put('/services/{id}/stops', 'Express\ServiceController@serviceStopUpdate');
-    $router->delete('/services/{id}/stops', 'Express\ServiceController@serviceStopDelete');
-
-
-    $router->patch('/services/{id}/dates/{idDate}', 'Express\ServiceController@serviceDateEdit');
-    $router->put('/services/{id}/dates', 'Express\ServiceController@datesUpdate');
-    //$router->delete('/services/{id}/dates', 'Express\ServiceController@datesDelete');
-    $router->post('/services/{id}/stops/{idStop}/states', 'Express\ServiceController@stopStateCreate');
-    $router->get('/services/{id}/stops/{idStop}/states', 'Express\ServiceController@stopStateShow');
-
-    $router->post('/services/{id}/stops/{idStop}/evidences', 'Express\ServiceController@stopEvidenceCreate');
-
-    $router->get('/services/{idService}/stops/{idStop}/evidence', 'Express\StopEvidenceController@show');
-    $router->get('/services/{id}/stops/{idStop}/evidences', 'Express\ServiceController@stopEvidence');
-
-    $router->get('/services/{id}/states', 'Express\ServiceController@states');
-    $router->post('/services/{id}/states', 'Express\ServiceController@statesCreate');
-
-    //>Gains
-    $router->get('/services/{id}/workers/{idWorker}/calculategains', 'Express\ServiceController@getGains');
-    //> Relaunch Service
-    $router->post('/services/relaunch/{id}', 'Express\ServiceController@relaunchService');
-
-
-    $router->get('/transactions', 'Express\TransactionController@show');
-    $router->post('/transactions', 'Express\TransactionController@create');
-
-    $router->post('/services/{id}/relaunch', 'Express\ServiceController@relaunchService');
-
-    //>Workers
-    $router->get('/workers', 'Express\WorkerController@show');
-    $router->get('/workers/{id}', 'Express\WorkerController@showOne');
-    $router->patch('/workers/{id}', 'Express\WorkerController@edit');
-    $router->delete('/workers/{id}', 'Express\WorkerController@delete');
-    $router->post('/workers', 'Express\WorkerController@create');
-    $router->post('/workers/register', 'Express\WorkerController@register');
-    $router->post('/workers/{id}/vehicles', 'Express\WorkerController@vehicleCreate');
-    $router->patch('/workers/{id}/vehicles/{vehicle}', 'Express\WorkerController@vehicleEdit');
-    $router->get('/workers/{id}/vehicles', 'Express\WorkerController@vehicleShow');
-    $router->post('/workers/vehicles/{id}/file', 'Express\WorkerController@uploadDocument');
-    $router->get('/workers/app/{id}/version/{version}', 'Express\WorkerController@app');
-    $router->post('/workers/app/{id}/fraud', 'Express\WorkerController@fraud');
-    $router->get('/workers/status/{id}', 'Express\WorkerController@status');
-
-    //>Rankings
-    $router->get('/rankings', 'Express\RankingController@show');
-    $router->get('/rankings/{id}', 'Express\RankingController@showOne');
-    $router->patch('/rankings/{id}', 'Express\RankingController@edit');
-    $router->delete('/rankings/{id}', 'Express\RankingController@delete');
-    $router->post('/rankings', 'Express\RankingController@create');
-    $router->post('/rankings/{id}/vehicles', 'Express\RankingController@vehicleCreate');
-    $router->get('/rankings/{id}/vehicles', 'Express\RankingController@vehicleShow');
-
-    //>Type States Service
-    $router->get('/servicestatetypes', 'Express\ServiceStateTypeController@show');
-
-    //>Type States Stop Service
-    $router->get('/servicestopstatetypes', 'Express\StopStateTypeController@show');
-
-    //reports
-    $router->post('/services/reports', 'ReportController@showServicesExpress');
-    $router->post('/workers/reports', 'ReportController@showWorkersExpress');
-    $router->post('/reports/vehicles', 'ReportController@showVehiclesExpress');
-
-    $router->post('/reports/user', 'ReportController@showUsers');
-    $router->post('/reports/companies', 'ReportController@showUsersInCompanies');
-
-    //Recharges
-    $router->get('/services/{id}/recharges', 'Express\RechargeController@show');
-    $router->post('/services/{id}/recharges', 'Express\RechargeController@create');
-
-    //Petitions
-    $router->get('/petitions', 'Express\PetitionController@show');
-    $router->get('/petitions/{id}', 'Express\PetitionController@showOne');
-    $router->post('/petitions', 'Express\PetitionController@create');
-    $router->post('/petitions/{id}', 'Express\PetitionController@edit');
-    $router->delete('/petitions/{id}', 'Express\PetitionController@delete');
-    $router->post('petitions/{id}/documents', 'Express\PetitionController@editDocument');
-    $router->post('/documents', 'Express\PetitionController@editDocumentWorker');
-
-
-
-
+    Correcto:
+    Controlador ReportController
+ ```
+    GET /reports/services/express
+    GET /reports/services/runer
+ ```
