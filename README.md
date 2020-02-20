@@ -596,7 +596,7 @@ Ejemplo:
     GET /services/{idService} <- Recupera un servicio específico
     GET /services/{idService}/stops <- Recupera las paradas de un servicio específico
     GET /services/{idService}/stops/{idStop} <- Recupera una parada de un servicio específico
-    GET /services/{idService}/stops/{idStop}/evidence <- Recupera las evidencias de una parada especifica en un servicio específico
+    GET /services/{idService}/stops/{idStop}/evidences <- Recupera las evidencias de una parada especifica en un servicio específico
  ```
 
 4.- Definir rutas a partir de controladores usados:
@@ -614,3 +614,12 @@ Ejemplo:
     GET /reports/services/express
     GET /reports/services/runer
  ```
+
+## Crear Estado de Parada de Servicio
+Request:
+```json
+ {
+    "stop_state_type_id":3,
+    "description": null
+}
+```
