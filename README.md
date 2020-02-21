@@ -536,11 +536,11 @@ Response:
 Response:
 ```json
 [
-  {"id":1,"name":"En Espera","description":"En Espera"},
-  {"id":2,"name":"Asignado","description":"Asignado"},      
-  {"id":3,"name":"En Transito","description":"En Transito"},
-  {"id":4,"name":"Finalizado","description":"Finalizado"}, 
-  {"id":5,"name":"Cancelado","description":"Cancelado"}
+  {"service_state_id":1,"service_state_name":"En Espera","description":"En Espera"},
+  {"service_state_id":2,"service_state_name":"Asignado","description":"Asignado"},      
+  {"service_state_id":3,"service_state_name":"En Transito","description":"En Transito"},
+  {"service_state_id":4,"service_state_name":"Finalizado","description":"Finalizado"}, 
+  {"service_state_id":5,"service_state_name":"Cancelado","description":"Cancelado"}
 ]
 ```
 
