@@ -362,7 +362,7 @@ Response:
                 "assignments": 2,
                 "capacity": 10,
                 "license_expiration": null,
-                "users": {
+                "user": {
                     "id": 115,
                     "first_name": "Cristian",
                     "last_name": "Cruz Express",
